@@ -44,7 +44,9 @@ int check(char a[], char b[]) {
 
   return 0;
   */
-  return strcmp(a, b);
+  int result;
+  result = strcmp(a, b);
+  return result;
 }
 
 void search() {
@@ -77,17 +79,17 @@ void insert(dictionary *temp) {
   dictionary *par;
   dictionary *ptr = Root;
 
-  if (Root == NULL) {
+  if (ptr == NULL) {
       Root = temp;
   } else {
 
     while (ptr != NULL && flag == 0) {
 
-      if (check(temp->word, ptr->word) == 1) {
+      if (check(temp->word, ptr->word) > 0) {
         par = ptr;
         ptr = ptr->right;
 
-      } else if (check(temp->word, ptr->word) == -1) {
+      } else if (check(temp->word, ptr->word) < 0) {
         par = ptr;
         ptr = ptr->left;
 
@@ -99,9 +101,9 @@ void insert(dictionary *temp) {
     }
 
     if(flag ==0){
-        if(check(par->word, temp->word) == 1){
+        if(check(par->word, temp->word) > 0){
             par->left = temp;
-        } else if(check(par->word, temp->word) == -1) {
+        } else if(check(par->word, temp->word) < 0) {
             par->right = temp;
         }
         return;
@@ -110,7 +112,7 @@ void insert(dictionary *temp) {
 }
 
 void view(dictionary *ptr) {
-    if(ptr == NULL) {
+    if(Root == NULL) {
         printf("\nEmpty Dictonary\n");
     } else {
         if(ptr != NULL) {
