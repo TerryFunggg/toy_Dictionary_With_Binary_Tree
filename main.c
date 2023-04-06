@@ -117,8 +117,10 @@ void view(dictionary *ptr) {
     } else {
         if(ptr != NULL) {
             view(ptr->left);
+            printf("\n========================");
             printf("\nWord: %s", ptr->word);
-            printf("\nWord: %s", ptr->meaning);
+            printf("\nMean: %s", ptr->meaning);
+            printf("========================\n");
             view(ptr->right);
         }
     }
@@ -137,6 +139,7 @@ int main(int argc, char const *argv[]) {
     if(result != 1)
     {
         while (getchar() != '\n');
+        printf("\n Please inpuit 1-4.\n");
         ch = 5;
     }
 
