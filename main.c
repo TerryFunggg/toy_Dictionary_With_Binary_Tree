@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAX_LENGTH 100
+
 struct dict {
   struct dict *left, *right;
   char word[10];
@@ -46,11 +48,12 @@ int check(char a[], char b[]) {
 }
 
 void search() {
-  char w[10];
+  char w[100];
   int flag = 0;
   dictionary *ptr = Root;
   printf("\nEnter the word:\n");
-  scanf("%s", w);
+  fflush(stdin); // discard char in input buffer for newline character
+  fgets(w, MAX_LENGTH, stdin);
 
   while (ptr != NULL && flag == 0) {
     if (check(w, ptr->word) == 1) {
@@ -143,10 +146,12 @@ int main(int argc, char const *argv[]) {
       temp = (dictionary *)malloc(sizeof(dictionary));
       temp->left = NULL;
       temp->right = NULL;
-      printf("\nInsert Word:");
-      scanf("%s", temp->word);
-      printf("\nInsert Meaning:");
-      scanf("%s", temp->meaning);
+      printf("\nInsert Word: ");
+      fflush(stdin); // discard char in input buffer for newline character
+      fgets(temp->word, MAX_LENGTH, stdin);
+      printf("\nInsert Meaning: ");
+      fflush(stdin);
+      fgets(temp->meaning, MAX_LENGTH, stdin);
 
       insert(temp);
       break;
