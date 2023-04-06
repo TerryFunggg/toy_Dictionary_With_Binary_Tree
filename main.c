@@ -58,9 +58,9 @@ void search() {
   fgets(w, MAX_LENGTH, stdin);
 
   while (ptr != NULL && flag == 0) {
-    if (check(w, ptr->word) == 1) {
+    if (check(w, ptr->word) > 0) {
       ptr = ptr->right;
-    } else if (check(w, ptr->word) == -1) {
+    } else if (check(w, ptr->word) < 0) {
       ptr = ptr->left;
     } else {
       flag = 1;
